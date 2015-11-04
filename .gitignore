@@ -1,0 +1,6 @@
+/config.local
+/build/
+/qtcreator-build/
+*~
+*.kate-swp
+/CMakeLists.txt.user*
