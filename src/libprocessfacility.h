@@ -23,6 +23,7 @@
 #ifdef __cplusplus
 #include <cstdint>
 #endif
+#include <sharemind/extern_c.h>
 #include <sharemind/libmodapi/api_0x1.h>
 #ifndef __cplusplus
 #include <stdint.h>
@@ -37,9 +38,7 @@
 #endif
 #endif /* SHAREMIND_ICONST */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+SHAREMIND_EXTERN_C_BEGIN
 
 typedef uint16_t SharemindProcessId;
 
@@ -50,8 +49,6 @@ struct SharemindProcessFacility_ {
             const SharemindProcessFacility * facility);
 };
 
-#ifdef __cplusplus
-} /* extern "C" { */
-#endif
+SHAREMIND_EXTERN_C_END
 
 #endif /* SHAREMIND_LIBPROCESSFACILITY_H */

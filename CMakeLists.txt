@@ -25,6 +25,7 @@ SET(LIBPROCESSFACILITY_COMPAT_VERSION "0.1.0.0")
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 
+FIND_PACKAGE(SharemindCHeaders REQUIRED)
 FIND_PACKAGE(SharemindLibmodapi REQUIRED)
 
 FILE(GLOB_RECURSE SHAREMIND_LIBPROCESSFACILITY_HEADERS
@@ -42,6 +43,7 @@ ADD_CUSTOM_TARGET("include_sharemind_libprocessfacility_in_files_in_IDE"
                   SOURCES ${sharemind_libprocessfacility_in_files})
 SET(LIBPROCESSFACILITY_INSTALL_INCLUDE_DIRS
     ${Boost_INCLUDE_DIRS}
+    ${SharemindCHeaders_INCLUDE_DIRS}
     ${SharemindLibmodapi_INCLUDE_DIRS}
     "${CMAKE_INSTALL_PREFIX}/include"
 )
