@@ -17,8 +17,8 @@
  * For further information, please contact us at sharemind@cyber.ee.
  */
 
-#ifndef SHAREMIND_MINER_PROCESSFACILITYAPI_H
-#define SHAREMIND_MINER_PROCESSFACILITYAPI_H
+#ifndef SHAREMIND_LIBPROCESSFACILITY_H
+#define SHAREMIND_LIBPROCESSFACILITY_H
 
 #ifdef __cplusplus
 #include <cstdint>
@@ -54,4 +54,4 @@ struct SharemindProcessFacility_ {
 } /* extern "C" { */
 #endif
 
-#endif /* SHAREMIND_MINER_PROCESSFACILITYAPI_H */
+#endif /* SHAREMIND_LIBPROCESSFACILITY_H */
