@@ -42,6 +42,7 @@ ADD_CUSTOM_TARGET("include_sharemind_libprocessfacility_in_files_in_IDE"
                   SOURCES ${sharemind_libprocessfacility_in_files})
 SET(LIBPROCESSFACILITY_INSTALL_INCLUDE_DIRS
     ${Boost_INCLUDE_DIRS}
+    ${SharemindLibmodapi_INCLUDE_DIRS}
     "${CMAKE_INSTALL_PREFIX}/include"
 )
 CONFIGURE_FILE(
