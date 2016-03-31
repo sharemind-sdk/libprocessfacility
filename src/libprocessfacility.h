@@ -52,6 +52,12 @@ struct SharemindProcessFacility_ {
     char const * (* SHAREMIND_ICONST printableId)(
             SharemindProcessFacility const * facility);
 
+    void const * (* SHAREMIND_ICONST localId)(
+            SharemindProcessFacility const * facility);
+
+    size_t (* SHAREMIND_ICONST localIdSize)(
+            SharemindProcessFacility const * facility);
+
 };
 
 SHAREMIND_EXTERN_C_END
