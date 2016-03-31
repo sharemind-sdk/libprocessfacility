@@ -45,8 +45,13 @@ typedef uint64_t SharemindProcessId;
 struct SharemindProcessFacility_;
 typedef struct SharemindProcessFacility_ SharemindProcessFacility;
 struct SharemindProcessFacility_ {
+
     SharemindProcessId (* SHAREMIND_ICONST get_process_id)(
-            const SharemindProcessFacility * facility);
+            SharemindProcessFacility const * facility);
+
+    char const * (* SHAREMIND_ICONST printableId)(
+            SharemindProcessFacility const * facility);
+
 };
 
 SHAREMIND_EXTERN_C_END
