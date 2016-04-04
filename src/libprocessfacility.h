@@ -47,9 +47,6 @@ struct SharemindProcessFacility_;
 typedef struct SharemindProcessFacility_ SharemindProcessFacility;
 struct SharemindProcessFacility_ {
 
-    SharemindProcessId (* SHAREMIND_ICONST get_process_id)(
-            SharemindProcessFacility const * facility);
-
     char const * (* SHAREMIND_ICONST printableId)(
             SharemindProcessFacility const * facility);
 
