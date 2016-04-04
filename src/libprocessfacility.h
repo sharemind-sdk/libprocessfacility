@@ -41,6 +41,7 @@
 SHAREMIND_EXTERN_C_BEGIN
 
 typedef uint64_t SharemindProcessId;
+typedef uint16_t SharemindGlobalIdSizeType;
 
 struct SharemindProcessFacility_;
 typedef struct SharemindProcessFacility_ SharemindProcessFacility;
@@ -56,6 +57,12 @@ struct SharemindProcessFacility_ {
             SharemindProcessFacility const * facility);
 
     size_t (* SHAREMIND_ICONST localIdSize)(
+            SharemindProcessFacility const * facility);
+
+    void const * (* SHAREMIND_ICONST globalId)(
+            SharemindProcessFacility const * facility);
+
+    SharemindGlobalIdSizeType (* SHAREMIND_ICONST globalIdSize)(
             SharemindProcessFacility const * facility);
 
 };
