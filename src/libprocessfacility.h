@@ -40,7 +40,6 @@
 
 SHAREMIND_EXTERN_C_BEGIN
 
-typedef uint64_t SharemindProcessId;
 typedef uint16_t SharemindGlobalIdSizeType;
 
 struct SharemindProcessFacility_;
