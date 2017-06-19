@@ -24,7 +24,6 @@
 #include <cstdint>
 #endif
 #include <sharemind/extern_c.h>
-#include <sharemind/libmodapi/api_0x1.h>
 #ifndef __cplusplus
 #include <stdint.h>
 #endif
