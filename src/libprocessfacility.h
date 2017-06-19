@@ -21,10 +21,12 @@
 #define SHAREMIND_LIBPROCESSFACILITY_H
 
 #ifdef __cplusplus
+#include <cstddef>
 #include <cstdint>
 #endif
 #include <sharemind/extern_c.h>
 #ifndef __cplusplus
+#include <stddef.h>
 #include <stdint.h>
 #endif
 
