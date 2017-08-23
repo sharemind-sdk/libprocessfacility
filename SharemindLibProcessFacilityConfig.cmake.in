@@ -23,6 +23,6 @@
 #   SharemindLibProcessFacility_DEFINITIONS  - required compiler definitions
 
 
-SET(SharemindLibProcessFacility_INCLUDE_DIRS @LIBPROCESSFACILITY_INSTALL_INCLUDE_DIRS@)
-SET(SharemindLibProcessFacility_LIBRARIES @LIBPROCESSFACILITY_INSTALL_LINK_LIBRARIES@)
-SET(SharemindLibProcessFacility_DEFINITIONS @LIBPROCESSFACILITY_INSTALL_DEFINITIONS@)
+SET(SharemindLibProcessFacility_INCLUDE_DIRS @SharemindLibProcessFacility_INSTALL_INCLUDE_DIRS@)
+SET(SharemindLibProcessFacility_LIBRARIES @SharemindLibProcessFacility_INSTALL_LINK_LIBRARIES@)
+SET(SharemindLibProcessFacility_DEFINITIONS @SharemindLibProcessFacility_INSTALL_DEFINITIONS@)

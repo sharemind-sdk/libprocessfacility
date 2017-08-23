@@ -17,18 +17,16 @@
 # For further information, please contact us at sharemind@cyber.ee.
 #
 
-CMAKE_MINIMUM_REQUIRED(VERSION "2.8.12")
-PROJECT(SHAREMIND_LIBPROCESSFACILITY "C")
-
-SET(CPACK_PACKAGE_VERSION_MAJOR "0")
-SET(CPACK_PACKAGE_VERSION_MINOR "1")
-SET(CPACK_PACKAGE_VERSION_PATCH "0")
-SET(LIBPROCESSFACILITY_VERSION
-    "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
-SET(LIBPROCESSFACILITY_COMPAT_VERSION "${LIBPROCESSFACILITY_VERSION}")
+CMAKE_MINIMUM_REQUIRED(VERSION "3.0")
+PROJECT(SharemindLibProcessFacility VERSION "0.1.0" LANGUAGES "C")
 
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
+
+FIND_PACKAGE(SharemindCMakeHelpers REQUIRED)
+
+SharemindSetProjectVersion()
+SET(SharemindLibProcessFacility_COMPAT_VERSION "${SharemindLibProcessFacility_VERSION}")
 
 FIND_PACKAGE(SharemindCHeaders REQUIRED)
 
@@ -38,41 +36,26 @@ ADD_CUSTOM_TARGET("include_SharemindLibProcessFacility_headers_in_IDE"
                   SOURCES ${SHAREMIND_LIBPROCESSFACILITY_HEADERS})
 
 INSTALL(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/"
-        DESTINATION "include/sharemind")
+        DESTINATION "include/sharemind"
+        COMPONENT "api-dev")
 
 # Install cmake files:
-FILE(GLOB_RECURSE sharemind_libprocessfacility_in_files
-     "${CMAKE_CURRENT_SOURCE_DIR}/*.in")
-ADD_CUSTOM_TARGET("include_sharemind_libprocessfacility_in_files_in_IDE"
-                  SOURCES ${sharemind_libprocessfacility_in_files})
-SET(LIBPROCESSFACILITY_INSTALL_INCLUDE_DIRS
+SET(SharemindLibProcessFacility_INSTALL_INCLUDE_DIRS
     ${Boost_INCLUDE_DIRS}
     ${SharemindCHeaders_INCLUDE_DIRS}
     "${CMAKE_INSTALL_PREFIX}/include"
 )
-CONFIGURE_FILE(
-    "${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibProcessFacilityConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibProcessFacilityConfig.cmake" @ONLY)
-CONFIGURE_FILE(
-    "${CMAKE_CURRENT_SOURCE_DIR}/SharemindLibProcessFacilityConfigVersion.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibProcessFacilityConfigVersion.cmake" @ONLY)
-INSTALL(
-    FILES "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibProcessFacilityConfig.cmake"
-          "${CMAKE_CURRENT_BINARY_DIR}/SharemindLibProcessFacilityConfigVersion.cmake"
-    DESTINATION "lib/SharemindLibProcessFacility")
+SharemindUseCMakeFindFiles(COMPONENT "api-dev")
 
 
 # Packaging:
-SET(CPACK_PACKAGE_VENDOR "Cybernetica AS")
-SET(CPACK_PACKAGE_CONTACT "Sharemind packaging <sharemind-packaging@cyber.ee>")
-SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY
-    "Sharemind Process Facility API development headers")
-SET(CPACK_GENERATOR "DEB")
-SET(CPACK_DEBIAN_PACKAGE_NAME "libsharemind-processfacility-api-dev")
-SET(CPACK_DEBIAN_PACKAGE_RELEASE "cyber1")
-SET(CPACK_DEBIAN_COMPRESSION_TYPE "xz")
-SET(CPACK_DEBIAN_PACKAGE_DEPENDS
-    "libsharemind-cheaders-dev (>= 0.1.0), libc6-dev (>= 2.19)")
-SET(CPACK_DEBIAN_PACKAGE_SECTION "libdevel")
-SET(CPACK_DEBIAN_FILE_NAME "DEB-DEFAULT")
-INCLUDE(CPack)
+SharemindSetupPackaging()
+SharemindAddComponentPackage("api-dev"
+    NAME "libsharemind-processfacility-api-dev"
+    DESCRIPTION "Sharemind Process Facility API development headers"
+    DEB_SECTION "libdevel"
+    DEB_DEPENDS
+        "libsharemind-cheaders-dev (>= 0.1.0)"
+        "libc6-dev (>= 2.19)"
+)
+SharemindPackagingFinalize()
