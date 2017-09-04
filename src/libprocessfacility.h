@@ -62,6 +62,12 @@ struct SharemindProcessFacility_ {
     SharemindGlobalIdSizeType (* SHAREMIND_ICONST globalIdSize)(
             SharemindProcessFacility const * facility);
 
+    char const * (* SHAREMIND_ICONST clientAuth)(
+            SharemindProcessFacility const * facility);
+
+    char const * (* SHAREMIND_ICONST programName)(
+            SharemindProcessFacility const * facility);
+
 };
 
 SHAREMIND_EXTERN_C_END
