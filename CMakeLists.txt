@@ -56,7 +56,7 @@ SharemindAddComponentPackage("api-dev"
     DESCRIPTION "Sharemind Process Facility API development headers"
     DEB_SECTION "libdevel"
     DEB_DEPENDS
-        "libsharemind-cheaders-dev (>= 0.1.0)"
+        "libsharemind-cheaders-dev (>= 1.1.0)"
         "libc6-dev (>= 2.19)"
 )
 SharemindPackagingFinalize()
