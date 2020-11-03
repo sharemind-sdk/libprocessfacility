@@ -35,11 +35,10 @@ ADD_CUSTOM_TARGET("include_SharemindLibProcessFacility_headers_in_IDE"
 
 INSTALL(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/"
         DESTINATION "include/sharemind"
-        COMPONENT "api-dev")
+        COMPONENT "dev")
 
 # Install cmake files:
 SharemindCreateCMakeFindFiles(
-    COMPONENT "api-dev"
     INCLUDE_DIRS
         "${CMAKE_INSTALL_PREFIX}/include"
         ${Boost_INCLUDE_DIRS}
@@ -49,7 +48,7 @@ SharemindCreateCMakeFindFiles(
 
 # Packaging:
 SharemindSetupPackaging()
-SharemindAddComponentPackage("api-dev"
+SharemindAddComponentPackage("dev"
     NAME "libsharemind-processfacility-api-dev"
     DESCRIPTION "Sharemind Process Facility API development headers"
     DEB_SECTION "libdevel"
