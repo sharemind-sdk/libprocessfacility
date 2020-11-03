@@ -23,26 +23,29 @@ PROJECT(SharemindLibProcessFacility VERSION "0.1.2" LANGUAGES "C")
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 
-FIND_PACKAGE(SharemindCMakeHelpers 1.3 REQUIRED)
+FIND_PACKAGE(SharemindCMakeHelpers 1.6 REQUIRED)
+
+FIND_PACKAGE(SharemindCHeaders 1.3.0 REQUIRED)
 
 
-FIND_PACKAGE(SharemindCHeaders 1.1.0 REQUIRED)
-
+# LibProcessFacility:
 FILE(GLOB_RECURSE SHAREMIND_LIBPROCESSFACILITY_HEADERS
      "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
 ADD_CUSTOM_TARGET("include_SharemindLibProcessFacility_headers_in_IDE"
                   SOURCES ${SHAREMIND_LIBPROCESSFACILITY_HEADERS})
-
+SharemindAddInterfaceLibrary(LibProcessFacility)
+TARGET_INCLUDE_DIRECTORIES(LibProcessFacility
+    INTERFACE
+        # $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src> # TODO
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>
+    )
+TARGET_LINK_LIBRARIES(LibProcessFacility INTERFACE Sharemind::CHeaders)
 INSTALL(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/"
         DESTINATION "include/sharemind"
         COMPONENT "dev")
-
-# Install cmake files:
-SharemindCreateCMakeFindFiles(
-    INCLUDE_DIRS
-        "${CMAKE_INSTALL_PREFIX}/include"
-        ${Boost_INCLUDE_DIRS}
-        ${SharemindCHeaders_INCLUDE_DIRS}
+SharemindCreateCMakeFindFilesForTarget(LibProcessFacility
+    DEPENDENCIES
+        "SharemindCHeaders 1.3.0"
 )
 
 
@@ -53,7 +56,7 @@ SharemindAddComponentPackage("dev"
     DESCRIPTION "Sharemind Process Facility API development headers"
     DEB_SECTION "libdevel"
     DEB_DEPENDS
-        "libsharemind-cheaders-dev (>= 1.1.0)"
+        "libsharemind-cheaders-dev (>= 1.3.0)"
         "libc6-dev (>= 2.19)"
 )
 SharemindPackagingFinalize()
