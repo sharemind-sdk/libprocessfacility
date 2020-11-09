@@ -31,9 +31,8 @@ FIND_PACKAGE(SharemindCHeaders 1.3.0 REQUIRED)
 # LibProcessFacility:
 FILE(GLOB_RECURSE SHAREMIND_LIBPROCESSFACILITY_HEADERS
      "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
-ADD_CUSTOM_TARGET("include_SharemindLibProcessFacility_headers_in_IDE"
-                  SOURCES ${SHAREMIND_LIBPROCESSFACILITY_HEADERS})
-SharemindAddInterfaceLibrary(LibProcessFacility)
+SharemindAddInterfaceLibrary(LibProcessFacility
+    EXPOSE_FILES ${SHAREMIND_LIBPROCESSFACILITY_HEADERS})
 TARGET_INCLUDE_DIRECTORIES(LibProcessFacility
     INTERFACE
         # $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src> # TODO
